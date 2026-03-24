@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"> 
+<body>
+    <div layout:fragment="content">
+        <form id="editSpeech" class="card" method="post" th:action="@{/admin/update-speech(id=${speech.id})}" enctype="multipart/form-data">
+            <p>Speaker: <input type="text" name="speaker" th:value="${speech.speaker}"></p>
+            <p>Date: <input id="dateInput" type="text" name="date" th:value="${speech.date}" placeholder="MM/DD/YYYY"></p>
+            <p>Topic(s): Separate multiple using commas</p>
+            <input type="text" name="topics" th:value="${#strings.listJoin(speech.topics, ', ')}">
+            <hr>
+            <p>Content:</p>
+            <textarea class="content" name="content" th:text="${speech.content}"></textarea>
+            <hr>
+            <p>Current Audio: <span th:text="${speech.audioPath != '' ? #strings.substring(speech.audioPath, 9) : 'None'}">Existing Path</span><br>
+            Update Audio (leave blank to keep current):</p>
+            <input type="file" name="audioFile">
+            <div class="d-flex justify-con-e">
+                <button id="submitBtn" class="btn2" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

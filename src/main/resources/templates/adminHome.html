@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"> 
+<body>
+  <div layout:fragment="content">
+    <div class="mb-3 d-flex justify-con-bt">
+      <h1>Welcome to the greatest app for speeches!</h1>
+      <form method="post" th:action="@{/admin/search}">
+        <div><p>Leave blank or 'CLEAR' to clear search</p></div>
+        <div><p>Can search for topic, speaker, or a quote from content</p></div>
+        <input name="query" type="text" placeholder="Search..."/>
+        <button class="btn" type="submit">Search</button>
+      </form>
+    </div>
+
+    <button id="addSpeechBtn" class="btn4">Add a Speech</button>
+    <div id="addSpeechDiv" class="mb-3 d-block card">
+      <form id="addSpeech" method="post" th:action="@{/admin/add-speech}" enctype="multipart/form-data">
+        <p>If multiple topics, separate them by commas</p>
+        <div class="mb-3 d-flex justify-con-bt">
+          <div class="d-block">
+            <div>
+            <input name="topics" placeholder="Topics">
+            <input name="speaker" placeholder="Speaker">
+            </div>
+            <p>Date: <input id="dateInput" name="date" placeholder="MM/DD/YYYY"></p>
+          </div>
+          <div>
+            <p>Audio: <input type="file" name="audioFile" placeholder="link to audio if avaliable"></p>
+          </div>
+        </div>
+        <textarea class="content" name="content" placeholder="Enter the speech content here..." rows="10" cols="50"></textarea>
+        <div class="d-flex justify-con-end">
+          <button id="submitBtn" class="btn2" type="submit">Add Speech</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="d-flex justify-con-e">
+      <p>Sort by:</p>
+      <button id="srtTopic" class="btn2">Topic</button>
+      <button id="srtDate" class="btn2">Date</button>
+      <button id="srtSpeak" class="btn2">Speaker</button>
+      <button id="srtAudio" class="btn2">Avaliable Audio</button>
+    </div>
+
+    <table class="styled-table" width="80%" height="30%">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Topic</th>
+          <th>Speaker</th>
+          <th>Content</th>
+          <th>Audio</th>
+          <th>View</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="speech: ${speeches}">
+          <td th:text="${speech.date}"></td>
+          <td th:text="${#strings.listJoin(speech.topics, ', ')}"></td>
+          <td th:text="${speech.speaker}"></td>
+          <td th:text="${#strings.abbreviate(speech.content, 100)}"></td>
+          <td th:text="${speech.audio}"></td>
+          <td>
+            <a class="btn" th:href="@{/speeches/view-speech(id=${speech.id})}">View</a>
+          </td>
+          <td>
+            <div class="mb-3 d-flex justify-con-ar">
+              <a th:href="@{edit-speech(id=${speech.id})}">Edit</a> <!-- Add speech id as argument -->
+              <a th:onclick="return confirmDelete()" th:href="@{delete-speech(id=${speech.id})}">Delete</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"> 
+<body>
+    <div layout:fragment="content">
+        <h1 th:text="|Speaker: ${speech.speaker}|">Speaker</h1>
+
+        <div class="card">
+            <h3 th:text="|Topic(s): ${#strings.listJoin(speech.topics, ', ')}|">Speech Topics</h3>
+            <hr>
+            <p th:text="${speech.content}">Speech Content</p>
+            <hr>
+            <p th:text="|Audio: ${speech.audioPath != '' ? #strings.substring(speech.audioPath, 9) : 'None'}|">Audio</p>
+            <audio controls>
+                <source th:src="${speech.audioPath}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+</body>
+</html>

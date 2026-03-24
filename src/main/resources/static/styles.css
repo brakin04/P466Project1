@@ -1,0 +1,156 @@
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#navbar {
+  flex-grow: 1;
+  margin: 0;
+  padding: 1%;
+}
+
+#navbar a, button {
+  text-decoration: none;
+  align-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20vh;
+  height: 40px;
+}
+
+div.top-of-screen {
+  background-color: blue;
+  align-items: center;
+  color: black;
+}
+
+span.validationError {
+	color: red;
+}
+
+.btn, .btn2, .btn4 {
+  border: 2px solid black;
+  border-radius: 50px;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+}
+.btn {
+  background-color: lightskyblue;
+}
+.btn2 {
+  background-color: lightsteelblue;
+}
+.btn4 {
+  background-color: #062;
+}
+.btn3 {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+body {
+  background-color: lightgray;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  display: block;
+  justify-content: left;
+  align-items: center;
+  padding: 2%;
+  margin: 4%;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: black;
+}
+
+.content {
+  width: 100%;
+  height: 30vh;
+}
+
+.mb-3 {
+  margin-bottom: 3%;
+} 
+
+.ml-2 {
+  margin-left: 2%;
+}
+
+.mr-2 {
+  margin-right: 2%;
+}
+
+.d-flex {
+  display: flex;
+  gap: 15px; 
+  align-items: center;
+}
+
+.d-block {
+  display: block;
+  align-items: center;
+}
+
+.justify-con-bt {
+  justify-content: space-between;
+}
+
+.justify-con-e {
+  justify-content: end;
+}
+
+.justify-con-ar {
+  justify-content: space-around;
+}
+
+.justify-con-l {
+  justify-content: left;
+}
+
+.justify-con-c {
+  justify-content: center;
+}
+.justify-self-c {
+  justify-self: center;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th, .styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}

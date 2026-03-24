@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"> 
+<body>
+    <div class="mb-3 d-flex justify-con-c" layout:fragment="content">
+        <div>
+            <h1>Oops! Something went wrong</h1>
+            
+            <p>Status: <span th:text="${status}">500</span></p>
+            
+            <p>Error: <span th:text="${error}">Unexpected Error</span></p>
+            
+            <p>Message: <span th:text="${message}">No message available</span></p>
+            
+            <a class="btn" th:href="@{/}">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
