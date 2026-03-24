@@ -44,12 +44,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/error", "/403", "/speeches/view-speech", "/uploads/**").permitAll()
+                .requestMatchers("/", "/login", "/error", "/403", "/speeches/view-speech", "/uploads/**", "/h2-console/**").permitAll()
                 .requestMatchers("/main.js", "/styles.css", "/images/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN") // Only Admins
                 .requestMatchers("/**").hasAnyRole("ADMIN", "CUSTOMER")
                 .anyRequest().authenticated()
             )
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**")) 
+            // 3. Allow frames from the same origin (required for H2 UI)
+            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .exceptionHandling(exception -> exception
                 .accessDeniedPage("/403") 
             )
