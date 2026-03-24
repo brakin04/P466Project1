@@ -24,6 +24,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
+
         // Define users with encrypted passwords and specific roles
         UserDetails admin = User.builder()
                 .username("admin")
@@ -44,9 +45,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/error", "/403", "/speeches/view-speech", "/uploads/**", "/h2-console/**").permitAll()
+                .requestMatchers("/", "/login", "/error", "/403", "/speeches/view-speech", "/uploads/**").permitAll()
                 .requestMatchers("/main.js", "/styles.css", "/images/**").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN") // Only Admins
+                .requestMatchers("/admin/**", "/h2-console/**").hasRole("ADMIN") // Only Admins
                 .requestMatchers("/**").hasAnyRole("ADMIN", "CUSTOMER")
                 .anyRequest().authenticated()
             )
